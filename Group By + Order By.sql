@@ -1,5 +1,5 @@
 -- Group By
--- When you use the GROUP BY clause in a MySQL query, it groups together rows that have the same values in the specified column or columns.
+-- The GROUP BY clause in a MySQL query groups together rows that have the same values in the specified column or columns.
 -- GROUP BY is going to allow us to group rows that have the same data and run aggregate functions on them
 
 SELECT *
@@ -53,14 +53,11 @@ GROUP BY gender
 
 #The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.
 
-
-#So let's try it out with our customer table
-#First let's start simple with just ordering by one column
 SELECT *
 FROM customers
 ORDER BY first_name;
 
-#You can see that first name is ordered from a - z or Ascending.
+#First name is ordered from a - z or Ascending.
 
 #We can change that by specifying DESC after it
 SELECT *
@@ -88,16 +85,15 @@ ORDER BY gender DESC, age DESC;
 
 
 
-#now we don't actually have to spell out the column names. We can actually just use their column position
+#We can actually just use their column position, we don't need to call their names
 
 #State is in position 8 and money is in 9, we can use those as well.
 SELECT *
 FROM employee_demographics
 ORDER BY 5 DESC, 4 DESC;
 
-#Now best practice is to use the column names as it's more overt and if columns are added or replaced or something in this table it will still use the right columns to order on.
+#But best practice is to use the column names as it's more overt and if columns are added or replaced or something in this table it will still use the right columns to order on.
 
-#So that's all there is to order by - fairly straight forward, but something I use for most queries I use in SQL
 
 
 
