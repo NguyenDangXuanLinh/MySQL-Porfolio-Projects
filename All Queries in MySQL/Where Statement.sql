@@ -1,8 +1,8 @@
 #WHERE Clause:
-#-------------
-#The WHERE clause is used to filter records (rows of data)
 
-#It's going to extract only those records that fulfill a specified condition.
+--The WHERE clause is used to filter records (rows of data)
+
+--It's going to extract only those records that fulfill a specified condition.
 
 SELECT *
 FROM employee_salary
