@@ -1,4 +1,4 @@
--- EDA
+-- Exploratory Data Analysis (EDA) 
 
 -- Here we are jsut going to explore the data and find trends or patterns or anything interesting like outliers
 
