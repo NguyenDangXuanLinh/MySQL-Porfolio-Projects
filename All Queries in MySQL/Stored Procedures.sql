@@ -1,6 +1,4 @@
--- So let's look at how we can create a stored procedure
 
--- First let's just write a super simple query
 SELECT *
 FROM employee_salary
 WHERE salary >= 60000;
@@ -35,13 +33,12 @@ FROM employee_salary
 WHERE salary >= 50000;
 
 
--- Best practice is to use a delimiter and a Begin and End to really control what's in the stored procedure
--- let's see how we can do this.
--- the delimiter is what separates the queries by default, we can change this to something like two $$
--- in my career this is what I've seen a lot of people who work in SQL use so I've picked it up as well
+--Best practice is to use a delimiter and a Begin and End to really control what's in the stored procedure
+#the delimiter is what separates the queries by default, we can change this to something like two $$
+#When we change this delimiter, it now reads in everything as one whole unit or query instead of stopping
+#after the first semi colon
 
--- When we change this delimiter it now reads in everything as one whole unit or query instead of stopping
--- after the first semi colon
+	
 DELIMITER $$
 CREATE PROCEDURE large_salaries2()
 BEGIN
@@ -60,7 +57,7 @@ DELIMITER ;
 -- now we can run this stored procedure
 CALL large_salaries2();
 
--- as you can see we have 2 outputs which are the 2 queries we had in our stored procedure
+--  we have 2 outputs which are the 2 queries we had in our stored procedure
 
 
 
