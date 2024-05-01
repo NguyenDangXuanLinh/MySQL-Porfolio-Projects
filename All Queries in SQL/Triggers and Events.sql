@@ -1,9 +1,10 @@
--- Triggers
+# Triggers
 
--- a Trigger is a block of code that executes automatically executes when an event takes place in a table.
+# executes automatically executes when an event takes place in a table.
 
--- for example we have these 2 tables, invoice and payments - when a client makes a payment we want it to update the invoice field "total paid"
--- to reflect that the client has indeed paid their invoice
+-- for example we have these 2 tables, invoice and payments - when a client makes a payment 
+	-- we want it to update the invoice field "total paid"
+	-- to reflect that the client has indeed paid their invoice
 
 
 SELECT * FROM employee_salary;
@@ -12,14 +13,15 @@ SELECT * FROM employee_demographics;
 
 -- so really when we get a new row or data is inserted into the payments table we want a trigger to update the correct invoice 
 -- with the amount that was paid
--- so let's write this out
+
 USE parks_and_recreation;
 DELIMITER $$
 
 CREATE TRIGGER employee_insert2
     -- we can also do BEFORE, but for this lesson we have to do after
 	AFTER INSERT ON employee_salary
-    -- now this means this trigger gets activated for each row that is inserted. Some sql databses like MSSQL have batch triggers or table level triggers that
+    -- now this means this trigger gets activated for each row that is inserted.
+    -- Some sql databses like MSSQL have batch triggers or table level triggers that
     -- only trigger once, but MySQL doesn't have this functionality unfortunately
     FOR EACH ROW
     
@@ -27,13 +29,12 @@ CREATE TRIGGER employee_insert2
 BEGIN
 -- we want to update our client invoices table
 -- and set the total paid = total_paid (if they had already made some payments) + NEW.amount_paid
--- NEW says only from the new rows that were inserted. There is also OLD which is rows that were deleted or updated, but for us we want NEW
+-- NEW says only from the new rows that were inserted. 
+	--There is also OLD which is rows that were deleted or updated, but for us we want NEW
     INSERT INTO employee_demographics (employee_id, first_name, last_name) VALUES (NEW.employee_id,NEW.first_name,NEW.last_name);
 END $$
 
 DELIMITER ; 
-
--- Now let's run it and create it
 
 
 -- Now that it's created let's test it out.
@@ -54,11 +55,9 @@ WHERE employee_id = 13;
 
 -- now let's look at Events
 
--- Now I usually call these "Jobs" because I called them that for years in MSSQL, but in MySQL they're called Events
-
--- Events are task or block of code that gets executed according to a schedule. These are fantastic for so many reasons. Importing data on a schedule. 
+-- Events are task or block of code that gets executed according to a schedule. Importing data on a schedule. 
 -- Scheduling reports to be exported to files and so many other things
--- you can schedule all of this to happen every day, every monday, every first of the month at 10am. Really whenever you want
+-- you can schedule all of this whenever you want : to happen every day, every monday, every first of the month at 10am. 
 
 -- This really helps with automation in MySQL
 
